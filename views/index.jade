@@ -1,0 +1,65 @@
+extends layout
+
+block content
+	h1 My Orders
+
+	//- div.btn-group.action-btn
+	//- 	button.btn.btn-info.dropdown-toggle(type="button" data-toggle="dropdown") Action
+	//- 		span.caret
+	//- 	ul.dropdown-menu(role="menu")
+	//- 		li
+	//- 			a(href="#") Mark as Paid
+	//- 		li
+	//- 			a(href="#") Mark as Shipped
+	//- 		li
+	//- 			a(href="#") Mark as Cancelled
+	//- 		li.divider
+	//- 		li
+	//- 			a(href="#") Mark as Paid and Shipped
+
+	ul.nav.nav-pills
+		li.active
+			a(href='#') Unpaid
+		li
+			a(href='#') Paid
+		li
+			a(href='#') Shipped
+		li
+			a.dropdown.toggle(href='#' data-toggle='dropdown') More Views
+				span.caret
+			ul.dropdown-menu
+				li
+					a(href="#") All
+				li
+					a(href="#") On Hold
+				li
+					a(href="#") Cancelled
+		li
+			a.dropdown.toggle(href='#' data-toggle='dropdown') Actions
+				span.caret
+			ul.dropdown-menu
+				li
+					a(href="#") Mark as Paid
+				li
+					a(href="#") Mark as Shipped
+				li
+					a(href="#") Mark as Cancelled
+				li.divider
+				li
+					a(href="#") Mark as Paid and Shipped
+
+
+	table.table.table-bordered.table-hover.table-striped
+		tr 
+			td 
+			td Date
+			td Order No.
+			td Buyer
+			td Status
+		tr
+			td
+				input(type='checkbox')
+			td May 31, 2014
+			td 53181
+			td Miguel Fernandez
+			td Awaiting Payment
