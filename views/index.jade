@@ -3,26 +3,19 @@ extends layout
 block content
 	h1 My Orders
 
-	ul.nav.nav-pills
-		li.active
-			a(href='#') Unpaid
+	ul.nav.nav-pills#statuses
+		li
+			a.unpaid(href='#') Unpaid
 				span.badge.pull-right 23
 		li
-			a(href='#') Paid
+			a.paid(href='#') Paid
 				span.badge.pull-right 15
 		li
-			a(href='#') Shipped
+			a.shipped(href='#') Shipped
 				span.badge.pull-right 28
-		li
-			a.dropdown.toggle(href='#' data-toggle='dropdown') More Views
-				span.caret
-			ul.dropdown-menu
-				li
-					a(href="#") All
-				li
-					a(href="#") On Hold
-				li
-					a(href="#") Cancelled
+		li.active
+			a.all-orders(href='#') All
+				span.badge.pull-right 40	
 		li
 			a.dropdown.toggle(href='#' data-toggle='dropdown') Actions
 				span.caret
@@ -44,7 +37,7 @@ block content
 				td
 					em  You don't have any orders yet!
 	else 
-		table.table.table-striped
+		table.table.table-striped#orders
 				thead
 					tr
 						th Date
@@ -53,8 +46,9 @@ block content
 						th Payment Status
 						th Shipping Status
 						th Total
+				tbody
 				each order in orders
-					tr
+					tr(data-financial-status=order.financial_status data-ship-status=order.fulfillment_status)
 						td #{moment(order.created_at).format('llll')}
 						td
 							a(href="##{order.id}", target="blank")= order.name
@@ -68,7 +62,7 @@ block content
 								span.label.label-important = other financial status
 						td
 							if (!order.fulfillment_status)
-								span.label Not Fulfilled
+								span.label.label-warning Not Fulfilled
 							else 
 								span.label.label-success Fulfilled
 						td #{order.total_price} #{order.currency}

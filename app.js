@@ -37,6 +37,9 @@ app.get('/login/finalize/token', shopifyController.token);
 app.get('/logout', shopifyController.logout);
 app.get('/plans', shopifyController.plans);
 app.get('/faq', shopifyController.faq);	
+app.get('/unpaid');
+app.get('/paid');
+app.get('/shipped');
 
 
 var server = app.listen(6873, function() {

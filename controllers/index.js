@@ -33,16 +33,16 @@ module.exports = {
 			if(session.valid()){
 				console.log('session is valid for <',shop,'>')
 
-				session.order.all({limit: 10}, function(err, orders){
+				session.order.all({}, function(err, orders){
 					console.log('orders:',orders);
 					if(err) { throw err;}
 
-					session.product.all({limit: 10}, function(err, products){
-						console.log("products:", products);
-						if(err) {  throw err;}
+					// session.product.all({limit: 10}, function(err, products){
+					// 	console.log("products:", products);
+					// 	if(err) {  throw err;}
 
-						res.render("index", {title: "Nodify App", current_shop: shop , orders: orders, products: products});
-					});
+						res.render("index", {title: "Nodify App", current_shop: shop , orders: orders/*, products: products*/});
+					// });
 
 				});
 			} 
@@ -160,5 +160,48 @@ module.exports = {
 		else {
 			res.redirect('/login');
 		}
+	},
+
+	unpaid: function(req, res) {	
+		if(req.session.shopify){
+			token = req.session.shopify.t
+			shop = req.session.shopify.shop
+		}
+
+		if(shop !== undefined && token !== undefined) {
+			res.render("faq", {title: "Nodify App FAQ", current_shop: shop});
+		}
+		else {
+			res.redirect('/login');
+		}
+	},
+
+	paid: function(req, res) {	
+		if(req.session.shopify){
+			token = req.session.shopify.t
+			shop = req.session.shopify.shop
+		}
+
+		if(shop !== undefined && token !== undefined) {
+			res.render("faq", {title: "Nodify App FAQ", current_shop: shop});
+		}
+		else {
+			res.redirect('/login');
+		}
+	},
+
+	shipped: function(req, res) {	
+		if(req.session.shopify){
+			token = req.session.shopify.t
+			shop = req.session.shopify.shop
+		}
+
+		if(shop !== undefined && token !== undefined) {
+			res.render("faq", {title: "Nodify App FAQ", current_shop: shop});
+		}
+		else {
+			res.redirect('/login');
+		}
 	}
+
 };
